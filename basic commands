@@ -1,0 +1,126 @@
+#create a table 
+Create Table TABLE2_NAME (
+COLUMN1 DATA_TYPE,
+COLUMN2 DATA_TYPE,
+primary Key (COLUMN1),
+Foreign Key (COLUMN2) references TABLE_NAME (COLUMN_NAME)
+)
+
+#descirbe a table
+Desc TABLE_NAME
+
+#statements
+
+Select COLUMN_NAME
+From TABLE_NAME
+Where CONDITION
+Group By (COLUMN_NAME)
+Having CONDITION
+Order By COLUMN_NAME
+
+Select COLUMN_NAME
+From TABLE_NAME
+Where CONDITION
+Group By (COLUMN_NAME)
+Order By COLUMN_NAME Asc
+
+Select COLUMN_NAME
+From TABLE_NAME
+Where CONDITION
+Group By (COLUMN_NAME)
+Order By COLUMN_NAME Desc
+
+Select COLUMN
+From TABLE_NAME
+Where CONDITION And COLUMN2 = (
+Select COLUMN2
+From TABLE2_NAME
+Where CONDITION
+)
+
+Select COLUMN
+From TABLE_NAME
+Where CONDITION And COLUMN2 In (
+Select COLUMN2
+From TABLE2_NAME
+Where CONDITION
+)
+
+Select COLUMN
+From TABLE_NAME
+Where CONDITION
+
+#Alter
+Alter Table TABLE_NAME
+Drop Column COLUMN_NAME;
+
+Alter Table TABLE_NAME
+Add COLUMN_NAME DATA_TYPE;
+
+#Update
+Update TABLE_NAME
+Set COLUMN_NAME='VALUE'
+Where CONDITION;
+
+#Insert
+Insert Into TABLE_NAME (COLUMN1_NAME, COLUMN2_NAME)
+Values (VALUE1, VALUE2);
+
+#Delete
+DELETE FROM table_name WHERE condition;
+
+#Triggers
+Create Or Replace Trigger TRIGGER_NAME
+Before|After
+Insert | Update | Delete
+On TABLE_NAME
+For Each Row
+When CONDITION
+Begin
+TRIGGER BODY
+End;
+
+#Views
+Create Or Replace View VIEW_NAME As
+Select COLUMN
+From TABLE
+Where CONDITION
+
+#Join
+Select COLUMN
+From TABLE1 Full Join TABLE2
+On TABLE1.COLUMN=TABLE2.COLUMN
+Where CONDITION
+
+Select COLUMN
+From TABLE1 Right Join TABLE2
+On TABLE1.COLUMN=TABLE2.COLUMN
+Where CONDITION
+
+Select COLUMN
+From TABLE1 Left Join TABLE2
+On TABLE1.COLUMN=TABLE2.COLUMN
+Where CONDITION
+
+Select COLUMN
+From TABLE1 Inner Join TABLE2
+On TABLE1.COLUMN=TABLE2.COLUMN
+Where CONDITION
+
+Select COLUMN
+From TABLE1 Join TABLE2
+On TABLE1.COLUMN=TABLE2.COLUMN
+Where CONDITION
+
+#Normalization notes
+1NF:
+-All attributes are atomic/single (No multivalued attribute, no composite attribute, values in the same attribute should be of the same type)
+
+2NF:
+Has to be in the 1NF
+There is no partial dependency (non-prime attribute should not be dependent on one part of the primary key without the other part/s)
+
+3NF:
+Has to be in the 2NF
+There is no transitive dependency
+(transitive dependency is when a non-prime attribute is dependent on another non-prime attribute)
